@@ -9,93 +9,19 @@ import babel
 from flask import Flask, render_template, request, Response, flash, redirect, url_for
 from flask_moment import Moment
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 import logging, sys
 import psycopg2
 from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
+import models
+from models import Venue, Artist, Show, db , app
+
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-moment = Moment(app)
-app.config.from_object('config')
-db = SQLAlchemy(app)
-
-# TODO: connect to a local postgresql database
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-migrate = Migrate(app,db)
-
-# Done connecting to the database
-
-#----------------------------------------------------------------------------#
-# Models.
-#----------------------------------------------------------------------------#
-
-class Venue(db.Model):
-    __tablename__ = 'venue'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
-    city = db.Column(db.String(120))
-    state = db.Column(db.String(120))
-    address = db.Column(db.String(120))
-    phone = db.Column(db.String(120))
-    facebook_link = db.Column(db.String(120))
-    image_link = db.Column(db.String(500))
-    
-    
-    # TODO: implement any missing fields, as a database migration using Flask-Migrate
-    genres = db.Column(db.ARRAY(db.String(120)))
-    website_link = db.Column(db.String(500))
-    seeking_talent = db.Column(db.String())
-    seeking_description = db.Column(db.String(500))
-    upcoming_shows_count = db.Column(db.Integer)
-    past_shows_count = db.Column(db.Integer)
-    
-    show = db.relationship('Show', backref='venue', lazy=True)
-    
-    
-    def __repr__(self):
-      return f'<Venue ID={self.id} Name={self.name}>'
-    
-class Artist(db.Model):
-    __tablename__ = 'artist'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
-    city = db.Column(db.String(120))
-    state = db.Column(db.String(120))
-    phone = db.Column(db.String(120))
-    genres = db.Column(db.ARRAY(db.String(120)))
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
-
-    # TODO: implement any missing fields, as a database migration using Flask-Migrate
-    website_link = db.Column(db.String(500))
-    seeking_venue = db.Column(db.String())
-    seeking_description = db.Column(db.String(500))
-    upcoming_shows_count = db.Column(db.Integer)
-    past_shows_count = db.Column(db.Integer)
-    
-    show = db.relationship('Show', backref='artist', lazy=True)
-    
-    def __repr__(self):
-      return f'<Artist ID:{self.id} Name:{self.name}>'    
-
-# TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
-
-class Show(db.Model):
-  __tablename__ = 'show'
-  id = db.Column(db.Integer, primary_key=True)
-  artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
-  venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'), nullable=False)
-  start_time = db.Column(db.DateTime, nullable=False)
-  
-    
 
 #----------------------------------------------------------------------------#
 # Filters.
@@ -119,48 +45,21 @@ app.jinja_env.filters['datetime'] = format_datetime
 def index():
   return render_template('pages/home.html')
 
-
-#  Venues
 #  ----------------------------------------------------------------
 
 @app.route('/venues')
 def venues():
   # TODO: replace with real venues data.
-  #       num_upcoming_shows should be aggregated based on number of upcoming shows per venue.
-  # data=[{
-  #   "city": "San Francisco",
-  #   "state": "CA",
-  #   "venues": [{
-  #     "id": 1,
-  #     "name": "The Musical Hop",
-  #     "num_upcoming_shows": 0,
-  #   }, {
-  #     "id": 3,
-  #     "name": "Park Square Live Music & Coffee",
-  #     "num_upcoming_shows": 1,
-  #   }]
-  # }, {
-  #   "city": "New York",
-  #   "state": "NY",
-  #   "venues": [{
-  #     "id": 2,
-  #     "name": "The Dueling Pianos Bar",
-  #     "num_upcoming_shows": 0,
-  #   }]
-  # }]
+  
     areas = db.session.query(Venue.city, Venue.state).group_by(Venue.state, Venue.city).all()
-    
-    # Venue.query(Venue.state,Venue.city).group_by(Venue.state,Venue.city).all()
     data = []
     
     for a in areas:
       id = db.session.query(Venue.id,Venue.name).filter(Venue.city==a[0],Venue.state==a[1]).all()
-      # id = db.session.query(Venue.id,Venue.name).filter_by('Venue.state = a[0]','Venue.city = a[1]').all()
       data.append({"city":a[0], "state":a[1],"venues":[]})
-
       for v in id:
         data[-1]["venues"].append({"id":v[0], "name":v[1]})
-
+    
 
     return render_template('pages/venues.html', areas=data)
 
@@ -176,9 +75,8 @@ def search_venues():
     "count": len(searches),
     "data": [{
       "id": id,
-      "name": name 
-      }
-    for id, name in searches]
+      "name": name
+    } for id, name in searches]
   }
   # response={
   #   "count": 1,
@@ -273,7 +171,7 @@ def show_venue(venue_id):
   # }
   
   show_venue = Venue.query.get(venue_id)
-  past_shows_query = db.session.query(Show).join(Venue).filter(Show.venue_id==venue_id).filter(Show.start_time<datetime.now()).all()   
+  past_shows_query = db.session.query(Show).join(Venue).filter(Show.venue_id==venue_id).filter(Show.start_time>datetime.now()).all()   
   upcoming_shows_query = db.session.query(Show).join(Venue).filter(Show.venue_id==venue_id).filter(Show.start_time>datetime.now()).all()   
   past_shows = []
   upcoming_shows = []
@@ -446,7 +344,6 @@ def search_artists():
 def show_artist(artist_id):
   # shows the artist page with the given artist_id
   # TODO: replace with real artist data from the artist table, using artist_id
-  
   artist_show = Artist.query.get(artist_id)
   past_shows_query = db.session.query(Show).join(Venue).filter(Show.artist_id==artist_show).filter(Show.start_time<datetime.now()).all()   
   upcoming_shows_query = db.session.query(Show).join(Venue).filter(Show.artist_id==artist_show).filter(Show.start_time>datetime.now()).all()   

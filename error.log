@@ -1,1 +1,210 @@
 
+2022-06-10 14:17:02,474 INFO: errors [in C:\Users\Sammy Black\Desktop\fyyur\app.py:843]
+2022-06-10 14:17:50,527 ERROR: Exception on /venues/create [POST] [in C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1455]
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 359, in create_venue_submission
+    db.session.add(venue)
+NameError: name 'db' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 362, in create_venue_submission
+    db.session.rollback()
+NameError: name 'db' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 366, in create_venue_submission
+    db.session.close()
+NameError: name 'db' is not defined
+2022-06-10 14:43:22,824 INFO: errors [in C:\Users\Sammy Black\Desktop\fyyur\app.py:843]
+2022-06-10 14:43:34,711 ERROR: Exception on /venues/create [POST] [in C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1455]
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x00000276A0899FE0 (otid=0x00000276A0850300) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 359, in create_venue_submission
+    db.session.add(venue)
+  File "<string>", line 2, in add
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x00000276A0899FE0 (otid=0x00000276A0850300) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 362, in create_venue_submission
+    db.session.rollback()
+  File "<string>", line 2, in rollback
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x00000276A0899FE0 (otid=0x00000276A0850300) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 366, in create_venue_submission
+    db.session.close()
+  File "<string>", line 2, in close
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+2022-06-10 14:46:03,023 INFO: errors [in C:\Users\Sammy Black\Desktop\fyyur\app.py:843]
+2022-06-10 14:46:37,414 ERROR: Exception on /venues/create [POST] [in C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1455]
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x000002472FFFB690 (otid=0x000002472FFE5440) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 359, in create_venue_submission
+    db.session.add(venue)
+  File "<string>", line 2, in add
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x000002472FFFB690 (otid=0x000002472FFE5440) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 362, in create_venue_submission
+    db.session.rollback()
+  File "<string>", line 2, in rollback
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x000002472FFFB690 (otid=0x000002472FFE5440) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 366, in create_venue_submission
+    db.session.close()
+  File "<string>", line 2, in close
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+2022-06-10 15:30:29,962 ERROR: Exception on /venues [GET] [in C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1455]
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x000002472FA23530 (otid=0x000002473012EB80) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Sammy Black\Desktop\fyyur\app.py", line 155, in venues
+    areas = db.session.query(Venue.city, Venue.state).group_by(Venue.state, Venue.city).all()
+  File "<string>", line 2, in query
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\scoping.py", line 24, in _proxied
+    return self.registry()
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 4209, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\Sammy Black\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
