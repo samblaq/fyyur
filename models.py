@@ -1,17 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
-from flask_moment import Moment
-from flask_migrate import Migrate
+# from flask import Flask
+# from flask_moment import Moment
+# from flask_migrate import Migrate
 #----------------------------------------------------------------------------#
 # Models.
 #----------------------------------------------------------------------------#
-app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-moment = Moment(app)
-app.config.from_object('config')
-db = SQLAlchemy(app)
-migrate = Migrate(app,db)
-
+db = SQLAlchemy()
 class Venue(db.Model):
     __tablename__ = 'venue'
 
@@ -29,7 +23,7 @@ class Venue(db.Model):
     website_link = db.Column(db.String(500), nullable=False)
     seeking_talent = db.Column(db.Boolean, default=False,nullable=True)
     seeking_description = db.Column(db.String(500),nullable=True)
-    show = db.relationship('Show', backref='venue', lazy=True)
+    shows = db.relationship('Show', backref='venue', lazy='joined', cascade="all, delete")
     
     
     def __repr__(self):
@@ -51,7 +45,7 @@ class Artist(db.Model):
     website_link = db.Column(db.String(500), nullable=True)
     seeking_venue = db.Column(db.String, nullable=False)
     seeking_description = db.Column(db.String(500),nullable=True)
-    show = db.relationship('Show', backref='artist', lazy=True)
+    shows = db.relationship('Show', backref='artist', lazy='joined', cascade="all, delete")
     
     def __repr__(self):
       return f'<Artist ID:{self.id} Name:{self.name}>'    
@@ -64,4 +58,4 @@ class Show(db.Model):
   artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
   venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'), nullable=False)
   start_time = db.Column(db.DateTime, nullable=False)
-  upcoming = db.Column(db.Boolean, nullable=False, default=False)
+  # upcoming = db.Column(db.Boolean, nullable=False, default=False)
