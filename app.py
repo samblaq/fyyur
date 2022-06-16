@@ -433,14 +433,20 @@ def shows():
   # displays list of shows at /shows
   # TODO: replace with real venues data.
 
-  get_show = db.session.query(Show)
-  show_tuple = []
-  
-  for a in get_show:
-    show_tuple.append({"venue_id":a.venue_id,"venue_name":a.venue.name,"artist_id":a.artist_id,"artist_name":a.artist.name,"artist_image_link":a.artist.image_link,"start_time":str(a.start_time)})
-    
-    
-    return render_template('pages/shows.html', shows=show_tuple)
+    shows_query = db.session.query(Show).join(Artist).join(Venue).all()
+
+    data = []
+    for show in shows_query: 
+      data.append({
+        "venue_id": show.venue_id,
+        "venue_name": show.venue.name,
+        "artist_id": show.artist_id,
+        "artist_name": show.artist.name, 
+        "artist_image_link": show.artist.image_link,
+        "start_time": show.start_time.strftime('%Y-%m-%d %H:%M:%S')
+      })
+
+    return render_template('pages/shows.html', shows=data)
 
 @app.route('/shows/create')
 def create_shows():
